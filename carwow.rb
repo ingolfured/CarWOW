@@ -6,22 +6,23 @@ while action != 'X' do
   case
   when action == 'I'
     if input.size == 3
-      pixels = Array.new(input[2].to_i){Array.new(input[1].to_i){'O'}}
+      i1 = input[2].to_i
+      i2 = input[1].to_i
+      unless  i1 < 1 or 250 < i1 or i2 < 1 or 250 < i2
+        pixels = Array.new(i1){Array.new(i2){'O'}}
+      else
+        puts "The picture has to have size 0<X,Y<251"
+      end
     else
       puts "Wrong number of arguments, please try again"
     end
 
   when action == 'C'
     if input.size == 1
-      pixels.each do |y|
-        y.each do |x|
-          x = 'O'
-        end
-      end
+      pixels = Array.new(pixels.length){Array.new(pixels[0].length){'O'}}
     else
       puts "Wrong number of arguments, please try again"
     end
-
 
   when action == 'L'
     if input.size == 4
@@ -70,8 +71,6 @@ while action != 'X' do
       puts "Wrong number of arguments, please try again"
     end
 
-
-
   when action == 'S'
     if input.size == 1
       pixels.each do |row|
@@ -83,7 +82,9 @@ while action != 'X' do
     else
       puts "Wrong number of arguments, please try again"
     end
+
   else
     puts "Illegal input, please try again"
   end
+
 end
